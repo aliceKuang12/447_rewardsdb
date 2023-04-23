@@ -1,0 +1,31 @@
+
+test account: melissa smith
+phone number; 9998887777
+rewardsNumber: 1298765431
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+todo:
+movie reward form
+dining reward form
+seed data for display item points table
+updating myPoints for rewards x2
+displaying  mypoints for rewardsx2
+updating total poitns for rewards (use a join)
+Make a menu/poster of pointItems and what they are worth.
+
+Insnertion forms:
+add validation making sure date is this year
+
+
+unique constraint on rewardsNum
+---------------------------------------------------------------
+Working:
+login --> homepage
+create user form
+
+
+dynamic query == takes input from user/ forms;
+Query types:
+Insertion (create user)
+Insnertion (join) x2 - movie rewards, dining rewards
+updating points x2- movie rewards, dining rewards
+total points (join)
