@@ -1,0 +1,55 @@
+<html>
+  <body>
+  <style>
+  h3 {
+      color: #FFF;
+      font-family:"droid serif";
+  }
+      .btn { 
+  background:rgba(197,62,126,.33) ! important;
+  color:#fff;
+  position:relative;
+  left:9px;
+  top:25px; 
+  width:100px;
+  cursor:pointer;
+}
+  </style>
+  <ul>
+    <li><a href="movie.php">Movie</a></li>
+    <li><a href="dining.html">Dining</a></li>
+    <li><a class="active" href="profile.html">Profile</a></li>
+    <li style="float:right"><a href="index.html">Logout</a></li>
+  </ul>
+
+
+<div class="container">
+    <link rel="stylesheet" href="profile.css">
+    <h1>Profile</h1>
+    <h3>Update profile using rewards number</h3>
+    <form action="update_user.php" id="join-us">
+      <div class="fields">
+      <span>
+         <input name = "rwn" placeholder="Rewards Number" type="number" />
+      </span>
+      <br />
+        <span>
+         <input name = "cell" placeholder="Phone Number" type="number" />
+      </span>
+      <br />
+       <span>
+         <input name = "fname" placeholder="First Name" type="text" />
+      </span>
+      <br />
+       <span>
+         <input name = "lname" placeholder="Last Name" type="text" />
+      </span>
+      </div>
+      <br/> <br/>
+      <div class="submit">
+          <button type="submit" class ="btn">Update</button>
+      </div>
+    </form>
+  </div>
+  
+  

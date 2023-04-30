@@ -1,237 +1,230 @@
 <?php
-
+session_start(); 
+include("db.php");  
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 ?>
 
 <html>
+<style>
+  .button1{
+  background: rgba(197, 62, 126, .33) ! important;
+  color:#fff;
+  border: none;
+  outline:none;
+  padding: 16px 32px;
+  text-align: center;
+  display: inline-block;  
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius:22px;
+  cursor:pointer;
+  }
 
+    h1, p {
+        color: #FFF;
+       /* text-align: left; */
+    }
+    
+    h3, .pts, .h3descript{
+        color: #FFF;
+       text-align: left; 
+    }
+    
+    table {
+  border-collapse: collapse;
+  border-spacing: 0;
+        border: 1px solid white;
+    }
+    
+    th, td {
+  /*text-align: left;*/
+  color: #FFF;
+  padding: 10px;
+}
+
+.row::after {  
+  content: "";
+  clear: both;
+  display: table;
+}
+/* Create two equal columns that floats next to each other , float: left;*/
+.column {
+  
+  flex: 50%;
+  padding: 20px; 
+}
+
+.h3 {
+    
+    text-align: left;
+}
+</style>
 <head>
-  <style>
-    @import url(https://fonts.googleapis.com/css?family=PT+Sans:400,400italic);
-
-    @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
-
-    html,
-    body {
-      background: #2F1E27;
-    }
-
-    h1,
-    p {
-      text-align: left;
-      color: white;
-      font-family: "Pt Sans", helvetica, sans-serif;
-    }
-
-    h6 {
-      color: white;
-      font-family: "Pt Sans", helvetica, sans-serif;
-    }
-
-    body {
-      counter-reset: section;
-      text-align: center;
-    }
-
-    .container {
-      position: relative;
-      top: 100px;
-    }
-
-    .container h1,
-    .container span {
-      font-family: "Pt Sans", helvetica, sans-serif;
-    }
-
-    .container h1 {
-      text-align: center;
-      color: #fff;
-      font-weight: 100;
-      font-size: 2em;
-      margin-bottom: 10px;
-    }
-
-    .container h2 {
-      font-family: "droid serif";
-      font-style: italic;
-      color: #d3b6ca;
-      text-align: center;
-      font-size: 1.2em;
-    }
-
-    .container form span:before {
-      counter-increment: section;
-      content: counter(section);
-      border: 2px solid #4c2639;
-      width: 40px;
-      height: 40px;
-      color: #fff;
-      display: inline-block;
-      border-radius: 50%;
-      line-height: 1.6em;
-      font-size: 1.5em;
-      position: relative;
-      left: -22px;
-      top: -11px;
-      background: #2F1E27;
-    }
-
-    form {
-      margin-top: 25px;
-      display: inline-block;
-    }
-
-    .fields {
-      border-left: 2px solid #4c2639
-    }
-
-    .container span {
-      margin-bottom: 22px;
-      display: inline-block;
-    }
-
-    .container span:last-child {
-      margin-bottom: -11px;
-    }
-
-    input {
-      border: none;
-      outline: none;
-      display: inline-block;
-      height: 34px;
-      vertical-align: middle;
-      position: relative;
-      bottom: 14px;
-      right: 9px;
-      border-radius: 22px;
-      width: 220px;
-      box-sizing: border-box;
-      padding: 0 18px;
-    }
-
-    input[type="button"],
-    input[type="submit"] {
-      background: rgba(197, 62, 126, .33) ! important;
-      color: #fff;
-      position: relative;
-      left: 9px;
-      top: 25px;
-      width: 100px;
-      cursor: pointer;
-    }
-
-    /* Style the tab */
-    .tab {
-      overflow: hidden;
-      border: 1px solid #ccc;
-      background-color: #f1f1f1;
-    }
-
-    /* Style the buttons that are used to open the tab content */
-    .tab button {
-      background-color: inherit;
-      float: left;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      padding: 14px 16px;
-      transition: 0.3s;
-    }
-
-    /* Change background color of buttons on hover */
-    .tab button:hover {
-      background-color: #ddd;
-    }
-
-    /* Create an active/current tablink class */
-    .tab button.active {
-      background-color: #ccc;
-    }
-
-    /* Style the tab content */
-    .tabcontent {
-      display: none;
-      padding: 6px 12px;
-      border: 1px solid #ccc;
-      border-top: none;
-    }
-  </style>
+     <link rel="stylesheet" href="movie.css">
 </head>
 
 <?php
-include("db.php");
 $cell = $_GET["cell"];
 $sql = "SELECT * FROM User where cell = '$cell'";
 
 $result = $conn->query($sql);
-$GLOBALS["userProfile"] = $result;
+
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
-    echo "<h1>Welcome " . $row["fname"] . " " . $row["lname"] . "\n</h1>";
-    echo "<p>Rewards Number: " . $row["rewardsNumber"] . "\n</p>";
-    $GLOBALS['rewardsNumber'] = $row["rewardsNumber"];
+    echo "<h3/><h3/><br/><h1>Welcome " . $row["fname"] . " " . $row["lname"] . "\n</h1>";
+    echo "<p>Rewards Number: " . $row["rwn"] . "\n</p>";
+    // $GLOBALS['rwn'] = $row["rwn"];
+    $_SESSION["srwn"] = $row['rwn'];
   }
-  $rwn = $GLOBALS['rewardsNumber'];
-  $sql2 = "SELECT * FROM MovieRewards  where rewardsNumber ='$rwn'";
+  
+  $rwn = $_SESSION['srwn'];
+  $sql2 = "SELECT * FROM MovieRwds NATURAL JOIN ItemPoints WHERE rwn ='$rwn'";
   $result2 = $conn->query($sql2);
-
-  $sql3 = "SELECT * FROM DiningRewards  where rewardsNumber ='$rwn'";
+  
+  $sql3 = "SELECT * FROM DiningRwds NATURAL JOIN ItemPoints WHERE rwn ='$rwn'";
   $result3 = $conn->query($sql3);
+  
+  $sql4 = "SELECT SUM(rpoints) FROM MovieRwds WHERE rwn ='$rwn'";
+  $result4 = $conn->query($sql4);
+  
+  $sql5 = "SELECT SUM(rpoints) FROM DiningRwds WHERE rwn ='$rwn'";
+  $result5 = $conn->query($sql5);
+  
+  $sql6 = "SELECT rwn, count(rwn) as purchases, sum(rpoints) as totalPoints
+            FROM User NATURAL JOIN (SELECT * FROM MovieRwds UNION SELECT * FROM DiningRwds) as Rwds 
+            GROUP BY(rwn) ORDER BY sum(rpoints) DESC
+  ";
+  $result6 = $conn->query($sql6);
 }
 ?>
 
 <body>
-  <!-- Tab links -->
-  <div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'Movie')" id="defaultOpen">Movie</button>
-    <button class="tablinks" onclick="openCity(event, 'Dining')">Dining</button>
-    <button class="tablinks" onclick="openCity(event, 'Rewards')">Rewards</button>
-  </div>
+    <a href="https://myrewardstracker.000webhostapp.com/movie.php" target="_self">
+        <button class = "button1" > Homepage  </button>
+    </a>
+    &nbsp;&nbsp;
+        <a href="https://myrewardstracker.000webhostapp.com" target="_self">
+        <button class = "button1" >&nbsp; Logout &nbsp; </button>
+    </a>
+  <div id="Movie" id="default-open" class="tabcontent">  
 
-
-  <!-- Tab1 : Movie -->
-  <div id="Movie" id="default-open" class="tabcontent">
-  <a href="movie.html" target="_blank">Enter purchase fields</a>   
-        <form action="./movieReward.php" method="get">
-          <p>Enter movie rewards</p>
-          <p>Date: </p><input name="date" type="date" placeholder="YYYY-MM-DD" min="2023-01-01" max="2023-12-31">
-          <p>Item:</p><input name="item" type="text">
-          <p>Quantity:</p><input name="quantity" type="text">
-          <p> </p>
-          <input type="submit" value="Add Reward ">
-        </form>
 
     <br /> <br />
 
     <?php
-    echo "<h1>Rewards History</h1>";
+    echo "    <div class = \"row\"> <h1>Rewards History</h1> </div>";
 
+    // movie Rewards
     if ($result2->num_rows > 0) {
-      echo "
-    
+    echo "
+    <div class = \"row\">
+    <div class =\"column\">
     <table class='movieRewards'>
+    <h3 > Movie 
+    ";
+    
+    while ($row = $result4->fetch_assoc()) {
+        echo "&nbsp;  | &nbsp; Total points: " . $row["SUM(rpoints)"] . "</h3>";
+    }
+    echo "
     <tr>
         <th>Date</th>
         <th>Item</th>
         <th>Quantity</th>
+        <th>Points / Item</th>
         <th>Points</th>
     </tr>
       ";
       while ($row = $result2->fetch_assoc()) {
 
         echo "<tr>";
-        echo "<td>" . $row["date"] . "</td>";
-        echo "<td>" . $row["item"] . "</td>";
-        echo "<td>" . $row["quantity"] . "</td>";
-        echo "<td>" . $row["myPoints"] . "</td>";
+        echo "<td>" . rtrim($row["rwdDate"], " 00:00:00") . "&nbsp;</td>";
+        echo "<td>" . $row["item"] . "&nbsp;</td>";
+        echo "<td>" . $row["quantity"] . "&nbsp;</td>";
+        echo "<td>" . $row["points"] . "&nbsp;</td>";
+        echo "<td>" . $row["rpoints"] . "&nbsp;</td>";
         echo "</tr>";
       }
+      echo "</table> </div>";
+      
     } else {
-      echo "<p> No rewards yet! </p>";
+      echo "
+      <div class = \"column\">
+      <br/><br/><p> No movie rewards yet! </p><br/><br/>
+      </div>
+      ";
     }
 
+    // Dining Rewards
+    if ($result3->num_rows > 0) {
+        
+    echo "
+    <div class = \"column\">
+    <table class='DiningRewards'>
+    <br/>
+    <h3> Dining
+    ";
+    
+    while ($row = $result5->fetch_assoc()) {
+        echo "&nbsp;  | &nbsp; Total points: " . $row["SUM(rpoints)"] . "</h3>";
+    }
+    echo "
+    <tr>
+        <th>Date</th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Points / Item</th>
+        <th>Points</th>
+    </tr>
+      ";
+      while ($row = $result3->fetch_assoc()) {
+
+        echo "<tr>";
+        echo "<td>" . rtrim($row["rwdDate"], " 00:00:00") . "&nbsp;</td>";
+        echo "<td>" . $row["item"] . "&nbsp;</td>";
+        echo "<td>" . $row["quantity"] . "&nbsp;</td>";
+        echo "<td>" . $row["points"] . "&nbsp;</td>";
+        echo "<td>" . $row["rpoints"] . "&nbsp;</td>";
+        echo "</tr>";
+      }
+    echo "</table> </div>";
+    echo "</div>";
+      
+    } else {
+      echo "
+            <div class = \"column\">
+      <p > No dining rewards yet! </p>
+      </div>";
+    }
+    
+    // stats section: compare your total stats to other users  of the app. 
+    echo "
+    <div class=\"row\">
+    <div class=\"column\">
+    <h3>Current Rankings</h3>
+    <p class=\"pts\">Current reward statuses of all users</p>
+    <br/>
+    <table>
+    <tr>
+        <th>Rwn</th>
+        <th>Purchases</th>
+        <th>Points</th>
+    </tr>
+    ";
+    while ($row = $result6->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["rwn"] . "&nbsp;</td>";
+        echo "<td>" . $row["purchases"] . "&nbsp;</td>";
+        echo "<td>" . $row["totalPoints"] . "&nbsp;</td>";
+        echo "<tr>";
+    }
+    
+    echo "</table>
+         </div>
+         </div>
+    ";
     ?>
   <script>
     function openForm() {
@@ -245,127 +238,19 @@ if ($result->num_rows > 0) {
   </div>
 
 
-  <!-- Tab2: Dining -->
-
-  <div id="Dining" class="tabcontent">
-
-    <form action="" method="post">
-      <p>Enter movie rewards</p>
-      <p>Date: </p><input name="date" type="text" placeholder="YYYY-MM-DD" min="2023-01-01">
-      <p>Item:</p><input name="item" type="text">
-      <p>Quantity:</p><input name="quantity" type="text">
-      <p> </p>
-      <input type="submit" value="Add Reward">
-    </form>
-
-    <br /> <br />
-
-    <!-- <?php
-    echo "<h1>Rewards History</h1>";
-
-    if ($result2->num_rows > 0) {
-      echo "
-    
-    <table class='movieRewards'>
-    <tr>
-      <th>Date</th>
-      <th>Item</th>
-      <th>Quantity</th>
-      <th>Points</th>
-    </tr>
-  ";
-      // while($row = $result2->fetch_assoc()) {
-    
-      //     echo "<tr>";
-      //     echo "<td>"  . $row["date"]      . "</td>";
-      //     echo "<td>"  . $row["item"]  . "</td>";
-      //     echo "<td>" . $row["quantity"] . "</td>";
-      //     echo "<td>"  . $row["myPoints"]     . "</td>";
-      //     echo "</tr>";
-      // }
-    } else {
-      echo "<p> No rewards yet! </p>";
-    }
-
-    ?>
--->
-  </div>
-
-
-  <div id="Rewards" class="tabcontent">
-
-    <h3>Total Points</h3>
-
-    <h3>Movie Rewards</h3>
-
-    <?php
-
-    if ($result2->num_rows > 0) {
-      echo "
-    
-    <table class='movieRewards'>
-    <tr>
-      <th>Date</th>
-      <th>Item</th>
-      <th>Quantity</th>
-      <th>Points</th>
-    </tr>
-  ";
-      while ($row = $result2->fetch_assoc()) {
-
-        echo "<tr>";
-        echo "<td>" . $row["date"] . "</td>";
-        echo "<td>" . $row["item"] . "</td>";
-        echo "<td>" . $row["quantity"] . "</td>";
-        echo "<td>" . $row["myPoints"] . "</td>";
-        echo "</tr>";
-      }
-    } else {
-      echo "<p> No rewards yet! </p>";
-    }
-
-    ?>
-
-    <h3>Dining Rewards</h3>
-    <?php
-    echo "hi";
-    if ($result) {
-      echo "hi";
-      while ($row = $GLOBALS["userProfile"]->fetch_assoc()) {
-        echo "Name: " . $row["fname"] . $row["lname"] . "\n";
-        echo "Phone: " . $row["cell"] . "\n";
-        echo "Rwn: " . $row["rewardsNumber"] . "\n";
-      }
-    } else {
-      echo "<p> No rewards yet! </p>";
-    }
-
-    $conn->close();
-    ?>
-  </div>
 
 
 
-  <script>
-    function openCity(evt, cityName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-      }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-      document.getElementById(cityName).style.display = "block";
-      evt.currentTarget.className += " active";
-    }
 
-    // Get the element with id="defaultOpen" and click on it
-    document.getElementById("defaultOpen").click();
-  </script>
 
+
+
+
+<?php 
+    $conn->close();    
+?>
 
 </body>
 
 </html>
+

@@ -1,0 +1,49 @@
+<html>
+  <body>
+  
+  <ul>
+    <li><a href="https://myrewardstracker.000webhostapp.com/movie.php">Movie</a></li>
+    <li><a class ="active" href="dining.html">Dining</a></li>
+    <li><a href="profile.html">Profile</a></li>
+    <li style="float:right"><a href="index.html">Logout</a></li>
+  </ul>
+
+
+<div class="container">
+    <link rel="stylesheet" href="dining.css">
+    <h1>Dining Rewards</h1>
+    
+    <form action="dining_reward.php" id="join-us">
+           <div class="fields">
+           <span>
+           <input name="drwn" placeholder="Reward Number" type="text" required />
+            </span>
+      <br />
+            <span>
+            <input list="ditems" name="ditem" placeholder="Item" />
+            <datalist id="ditems">
+                <option value="Appetizer">
+                <option value="Entree">
+                <option value="Drink">
+                <option value="Dessert">
+            </datalist>
+            </span>
+      <br />
+       <span>
+        <input name="dquantity" placeholder="Quantity" type="number" min="1" required />
+      </span>
+      <br />
+       <span>
+         <input name="ddate" placeholder="Date" type="date" required />
+      </span>
+      </div>
+      <br/><br/>
+      <div class="openButton">
+        <button type="submit" class="btn2" >Submit</button>
+      </div>
+    </form>
+</div>
+
+  
+ </body>
+</html>

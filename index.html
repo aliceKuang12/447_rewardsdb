@@ -1,155 +1,164 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
   <title>Login</title>
-  <link rel="stylesheet" href="./css/login.css">
   <style>
     @import url(https://fonts.googleapis.com/css?family=PT+Sans:400,400italic);
 
-@import url(https://fonts.googleapis.com/css?family=Droid+Serif);
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
 
-html, body{
-  background:#2F1E27;
-}
+    html,
+    body {
+      background: #2F1E27;
+    }
 
-body{
-  counter-reset:section;
-  text-align:center;
-}
+    body {
+      counter-reset: section;
+      text-align: center;
+    }
 
-.container{
-  position:relative;
-  top:100px;
-}
+    .container {
+      position: relative;
+      top: 100px;
+    }
 
-.container h1, .container span{
-  font-family:"Pt Sans", helvetica, sans-serif;
-}
+    .container h1,
+    .container span {
+      font-family: "Pt Sans", helvetica, sans-serif;
+    }
 
-.container h1{
-  text-align:center;
-  color:#fff;
-  font-weight:100;
-  font-size:2em; 
-  margin-bottom:10px;
-}
+    .container h1 {
+      text-align: center;
+      color: #fff;
+      font-weight: 100;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
 
-.container h2{
-  font-family:"droid serif";
-  font-style:regular;
-  color:#311328; 
-  text-align:center;
-  font-size:1.2em;
-}
+    .container h2 {
+      font-family: "droid serif";
+      font-style: regular;
+      color: #311328;
+      text-align: center;
+      font-size: 1.2em;
+    }
 
-.container form span:before {
-  counter-increment:section;
-  content:counter(section);
-  border:2px solid #4c2639;
-  width:40px;
-  height:40px;
-  color:#fff;
-  display:inline-block;
-  border-radius:50%;
-  line-height:1.6em;
-  font-size:1.5em;
-  position:relative;
-  left:-22px;
-  top:-11px;
-  background:#2F1E27;
-}
+    .container form span:before {
+      counter-increment: section;
+      content: counter(section);
+      border: 2px solid #4c2639;
+      width: 40px;
+      height: 40px;
+      color: #fff;
+      display: inline-block;
+      border-radius: 50%;
+      line-height: 1.6em;
+      font-size: 1.5em;
+      position: relative;
+      left: -22px;
+      top: -11px;
+      background: #2F1E27;
+    }
 
-form{
-  margin-top:25px;
-  display:inline-block;
-}
+    form {
+      margin-top: 25px;
+      display: inline-block;
+    }
 
-.fields{
-  border-left:2px solid #4c2639
-}
+    .fields {
+      border-left: 2px solid #4c2639
+    }
 
-.container span{
-    margin-bottom:22px; 
-    display:inline-block;
-}
+    .container span {
+      margin-bottom: 22px;
+      display: inline-block;
+    }
 
-.container span:last-child{
-   margin-bottom:-11px;
-}
+    .container span:last-child {
+      margin-bottom: -11px;
+    }
 
-input{
-  border:none;
-  outline:none;
-  display:inline-block;
-  height:34px;
-  vertical-align:middle;
-  position:relative;
-  bottom:14px;
-  right:9px;
-  border-radius:22px;
-  width:220px;
-  box-sizing:border-box;
-  padding:0 18px; 
-}
+    input {
+      border: none;
+      outline: none;
+      display: inline-block;
+      height: 34px;
+      vertical-align: middle;
+      position: relative;
+      bottom: 14px;
+      right: 9px;
+      border-radius: 22px;
+      width: 220px;
+      box-sizing: border-box;
+      padding: 0 18px;
+    }
 
-.openButton{
-  background:rgba(197,62,126,.33) ! important;
-  color:#fff;
-  display:inline-block;
-  height:34px;
-  vertical-align:middle;
-  position:relative;
-  bottom:14px;
-  right:9px;
-  border-radius:22px;
-  width:220px;
-  box-sizing:border-box;
-  padding:0 18px; 
-}
+    .openButton, .btn {
+      background: rgba(197, 62, 126, .33) ! important;
+      color: #fff;
+      height: 34px;
+      vertical-align: middle;
+      position: relative;
+      top: 25px;
+      bottom: 14px;
+      left: 9px;
+      border-radius: 22px;
+      width: 150px;
+      box-sizing: border-box;
+      padding: 0 18px;
+    }
+    
+    .btn {
+        .width: 100px;
+    }
 
-input[type="button"] { 
-  background:rgba(197,62,126,.33) ! important;
-  color:#fff;
-  position:relative;
-  left:9px;
-  top:25px; 
-  width:100px;
-  cursor:pointer;
-}
+    input[type="button"] {
+      background: rgba(197, 62, 126, .33) ! important;
+      color: #fff;
+      position: relative;
+      left: 9px;
+      top: 15px;
+      width: 100px;
+      cursor: pointer;
+    }
 
-* {
-  box-sizing: border-box;
-}
-.openBtn {
-  display: flex;
-  justify-content: center;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.loginPopup {
-  position: relative;
-  text-align: center;
-  width: 100%;
-}
-.formPopup {
-  display: none;
-  position: fixed;
-  left: 45%;
-  top: 5%;
-  border: 3px solid #580808;
-  z-index: 9;
-}
-.formContainer {
-  max-width: 400px;
-  padding: 20px;
-  background-color: rgb(222, 241, 113);
-}
-.formContainer input[type=text],
-.formContainer input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 20
-}
+    .openBtn {
+      display: flex;
+      justify-content: center;
+    }
+
+    .loginPopup {
+      position: relative;
+      text-align: center;
+      width: 100%;
+    }
+
+    .formPopup {
+      display: none;
+      position: fixed;
+      left: 35%;
+      bottom: 35%;
+      z-index: 1;
+    }
+
+    .formContainer {
+      max-width: 400px;
+      padding: 20px;
+      background-color: rgb(222, 241, 113);
+    }
+
+    .formContainer input[type=text],
+    .formContainer input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 20
+    }
   </style>
 </head>
 
@@ -165,47 +174,45 @@ input[type="button"] {
 
       </div>
       <div class="submit">
-        <input value="Login" type="submit" />
+        <button type="submit" class="btn"> Login </button> 
       </div>
 
-      <a href="movie.html" target="_blank">Quick add</a>   
-      
+
     </form>
 
-    <br/><br/>
+    <br /><br />
 
-    <div class = "container">
-    <div class="openBtn">
-      <button class="openButton" onclick="openForm()"><strong>Create User</strong></button>
-    </div>
-  
+    <div class="container">
+      <div class="openBtn">
+        <button class="openButton" onclick="openForm()"><strong>Create User</strong></button>
+      </div>
+
     </div>
     <div class="loginPopup">
       <div class="formPopup" id="popupForm">
         <form action="create_user.php" method="get" class="formContainer">
           <h2>Create new account</h2>
-          <br/>
+          <br />
           <input type="text" name="fname" placeholder="First name" required>
-          <br/>
-          <br/>
+          <br />
+          <br />
           <input type="text" name="lname" placeholder="Last name" required>
-          <br/>
-          <br/>
+          <br />
+          <br />
           <input type="text" name="cell" placeholder="Cell phone" required>
-          <br/>   
-          <br/>
+          <br />
+          <br />
           <input type="text" name="rewardNum" placeholder="Reward Number: 10 digits" required>
-          <br/>
-          <br/>
+
           <button type="submit" class="btn">Submit</button>
           <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+          
+          <br/> <br/><br/>
         </form>
       </div>
     </div>
-  </div>
-  </div>
+    <br/> <br/>
 
- 
 
   <script>
     function openForm() {
@@ -215,7 +222,7 @@ input[type="button"] {
       document.getElementById("popupForm").style.display = "none";
     }
   </script>
-
+</div>
 </body>
 
 </html>
