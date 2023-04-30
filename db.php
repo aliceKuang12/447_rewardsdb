@@ -1,9 +1,10 @@
 <?php
 	$username = 'root';
 	$password = '...';
-   
+   	$host = 'localhost';
+
 	// Connect to MySQL server, select database
-	$conn = new mysqli(localhost, $username, $password, $username);
+	$conn = new mysqli($host, $username, $password, $username);
 
    // Check connection
    if ($conn->connect_error) {
